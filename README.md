@@ -17,7 +17,7 @@ Each token in a rule is a single character:
 You can play with the notebook rendered in web assemby at [augeas.github.io/1dca/](https://augeas.github.io/1dca/).
 Alternatively, create a virtualenv, clone the repo and install the dependencies:
 
-'''bash
+```bash
 mkdir ca_venv
 python3 -m venv ca_venv
 source ./ca_venv/bin/activate
@@ -25,5 +25,4 @@ git clone git@github.com:augeas/1dca.git
 cd 1cda
 pip install -r requirements.txt
 marimo edit
-'''
-
+```
