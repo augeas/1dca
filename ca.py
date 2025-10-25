@@ -136,9 +136,9 @@ def _(__op_funcs__, __op_tokens__, __var_tokens__, np, string):
                 stack.append(func(*args).astype(np.int32))
             elif tok == '?':
                 try:
-                    pred = np.ones((32,)) * stack.pop()
-                    pred_true = np.ones((32,)) * stack.pop()
-                    pred_false = np.ones((32,)) * stack.pop()
+                    pred = np.ones((64,)) * stack.pop()
+                    pred_true = np.ones((64,)) * stack.pop()
+                    pred_false = np.ones((64,)) * stack.pop()
                 except:
                     return (None, pos[i])
                 stack.append(np.where(pred, pred_true, pred_false))
@@ -305,7 +305,7 @@ def _(mo):
         * variables: spatial, `L`, `l`, `c`, `r`, `R` and `p` (previous), 0 or 1
         * constants: single digits 0-9
         * integer operators: `+`, `-`, `*`, `%` (modular division)
-        * boolean operators: `&`, (and) `|`, or `^`, (xor) `<`, `=`, `>`
+        * boolean operators: `&`, (and) `|`, (or) `^`, (xor) `<`, `=`, `>`
         * parentheses: `()`
         * predicate function: `?` (`?(predicate, expression-if-true, expression-if-false)`)
         """
