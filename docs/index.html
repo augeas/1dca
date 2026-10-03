@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./favicon.ico" />
+    <!-- Preload is necessary because we show these images when we disconnect from the server,
+    but at that point we cannot load these images from the server -->
+    <link rel="preload" href="./assets/gradient-yHQUC_QB.png" as="image" />
+    <link rel="preload" href="./assets/noise-60BoTA8O.png" as="image" />
+    <!-- Preload the fonts -->
+    <link rel="preload" href="./assets/Lora-VariableFont_wght-CZceb_kH.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Regular-Bam3NpBI.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Bold-C_DwAp7Z.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Regular-CEsLFVD9.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Medium-D5MAsWEG.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Bold-C6PDArdf.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="a marimo app" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.json" />
+
+    <script data-marimo="true">
+      function __resizeIframe(obj) {
+        const scrollbarHeight = 20; // Max between windows, mac, and linux
+
+        function setHeight() {
+          // Guard against race condition where iframe isn't ready
+          if (!obj.contentWindow?.document?.documentElement) {
+            return;
+          }
+          const element = obj.contentWindow.document.documentElement;
+          // If there is no vertical scrollbar, we don't need to resize the iframe
+          if (element.scrollHeight === element.clientHeight) {
+            return;
+          }
+
+          // Create a new height that includes the scrollbar height if it's visible
+          const hasHorizontalScrollbar = element.scrollWidth > element.clientWidth;
+          const newHeight = element.scrollHeight + (hasHorizontalScrollbar ? scrollbarHeight : 0);
+
+          // Only update the height if it's different from the current height
+          if (obj.style.height !== `${newHeight}px`) {
+            obj.style.height = `${newHeight}px`;
+          }
+        }
+
+        // Resize the iframe to the height of the content and bottom scrollbar height
+        setHeight();
+
+        // Resize the iframe when the content changes
+        const resizeObserver = new ResizeObserver((_entries) => {
+          setHeight();
+        });
+        // Only observe if iframe content is ready
+        if (obj.contentWindow?.document?.body) {
+          resizeObserver.observe(obj.contentWindow.document.body);
+        }
+      }
+    </script>
+    <marimo-filename hidden>notebook.py</marimo-filename>
+    <!-- TODO(Trevor): Legacy, required by VS Code plugin. Remove when plugin is updated (see marimo/server/_templates/template.py) -->
+    <marimo-version data-version="{{ version }}" hidden></marimo-version>
+    <marimo-user-config data-config="{{ user_config }}" hidden></marimo-user-config>
+    <marimo-server-token data-token="{{ server_token }}" hidden></marimo-server-token>
+    <!-- /TODO -->
+    <title>ca</title>
+    <script type="module" crossorigin src="./assets/index-awsLWRjZ.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/preload-helper-BPPi7vOr.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-LvLJmgfZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-Bj1aDYRI.js">
+    <link rel="modulepreload" crossorigin href="./assets/compiler-runtime-B3qBwwSJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/jsx-runtime-BqBOg78p.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEventListener-DvoEXWke.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-BLUna9fQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/precisionRound-Cl9k9ZmS.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-DzliDDTm.js">
+    <link rel="modulepreload" crossorigin href="./assets/vega-loader.browser-C8wT63Va.js">
+    <link rel="modulepreload" crossorigin href="./assets/utils-DCL4n9wx.js">
+    <link rel="modulepreload" crossorigin href="./assets/clsx-Dz_KRrWq.js">
+    <link rel="modulepreload" crossorigin href="./assets/cn-DCUzRj2J.js">
+    <link rel="modulepreload" crossorigin href="./assets/badge-j3NGjqhR.js">
+    <link rel="modulepreload" crossorigin href="./assets/button-BbCh-29a.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-dom-CSu739Rf.js">
+    <link rel="modulepreload" crossorigin href="./assets/fullscreen-eipL3i3Y.js">
+    <link rel="modulepreload" crossorigin href="./assets/menu-items-DcP01QzW.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BdyjRhEt.js">
+    <link rel="modulepreload" crossorigin href="./assets/createLucideIcon-D5guW7EU.js">
+    <link rel="modulepreload" crossorigin href="./assets/check-BH35Ndha.js">
+    <link rel="modulepreload" crossorigin href="./assets/x-C-6liIBr.js">
+    <link rel="modulepreload" crossorigin href="./assets/select-DZcFyKFQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/tooltip-DTV9tlSr.js">
+    <link rel="modulepreload" crossorigin href="./assets/use-toast-IPAtJGea.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEvent-D91BmmQi.js">
+    <link rel="modulepreload" crossorigin href="./assets/invariant-BUdrueMv.js">
+    <link rel="modulepreload" crossorigin href="./assets/isObject-DvLSfCY5.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseFor-DKD1r8uL.js">
+    <link rel="modulepreload" crossorigin href="./assets/merge-_9WLTEyt.js">
+    <link rel="modulepreload" crossorigin href="./assets/zod-H_cgTO0M.js">
+    <link rel="modulepreload" crossorigin href="./assets/utils-CvI-39U6.js">
+    <link rel="modulepreload" crossorigin href="./assets/Deferred-CP7vq682.js">
+    <link rel="modulepreload" crossorigin href="./assets/uuid-e9lSomwA.js">
+    <link rel="modulepreload" crossorigin href="./assets/DeferredRequestRegistry-CNldVcrP.js">
+    <link rel="modulepreload" crossorigin href="./assets/constants-DMpttj8Q.js">
+    <link rel="modulepreload" crossorigin href="./assets/session-0B5NBztP.js">
+    <link rel="modulepreload" crossorigin href="./assets/config-ClMcu_sV.js">
+    <link rel="modulepreload" crossorigin href="./assets/requests-DIwGYs0l.js">
+    <link rel="modulepreload" crossorigin href="./assets/useLifecycle-DieWOfXE.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNonce-DfoVjkkH.js">
+    <link rel="modulepreload" crossorigin href="./assets/useTheme-CI2eq4XN.js">
+    <link rel="modulepreload" crossorigin href="./assets/arrays-DYDL-3-i.js">
+    <link rel="modulepreload" crossorigin href="./assets/strings-wdPMRf6Z.js">
+    <link rel="modulepreload" crossorigin href="./assets/once-DRroIaBz.js">
+    <link rel="modulepreload" crossorigin href="./assets/capabilities-A_KhFcGV.js">
+    <link rel="modulepreload" crossorigin href="./assets/createReducer-CI9qeK_X.js">
+    <link rel="modulepreload" crossorigin href="./assets/paths-D5zczhUD.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BrR4M-k3.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-HlsDto3K.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CHcznzB-.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-B1U1kGCR.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-ChF5Ln9c.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CpTFpfm_.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CBSMxaO_.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CPczQFlJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-C9ZB41s2.js">
+    <link rel="modulepreload" crossorigin href="./assets/stex-BGrE-q7N.js">
+    <link rel="modulepreload" crossorigin href="./assets/toDate-B5A0DFEz.js">
+    <link rel="modulepreload" crossorigin href="./assets/purify.es-B9KxLTTS.js">
+    <link rel="modulepreload" crossorigin href="./assets/cjs-BRGiG41H.js">
+    <link rel="modulepreload" crossorigin href="./assets/isSymbol-BT6B8Bon.js">
+    <link rel="modulepreload" crossorigin href="./assets/now-CsYTPAhW.js">
+    <link rel="modulepreload" crossorigin href="./assets/debounce-DhnxH9Rh.js">
+    <link rel="modulepreload" crossorigin href="./assets/database-zap-kIkTfzTX.js">
+    <link rel="modulepreload" crossorigin href="./assets/main-B0OX4z33.js">
+    <link rel="modulepreload" crossorigin href="./assets/cells-BsaJrRWi.js">
+    <link rel="modulepreload" crossorigin href="./assets/ErrorBoundary-DyYDV0HI.js">
+    <link rel="modulepreload" crossorigin href="./assets/kbd-CTUAEnEx.js">
+    <link rel="modulepreload" crossorigin href="./assets/useInstallPackage-DUF4IRRI.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-dialog-BqFLkbUc.js">
+    <link rel="modulepreload" crossorigin href="./assets/dialog-DzC_QCtT.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDebounce-7xZwVnnu.js">
+    <link rel="modulepreload" crossorigin href="./assets/numbers-C3BAdHZE.js">
+    <link rel="modulepreload" crossorigin href="./assets/SSRProvider-CkFAAHXw.js">
+    <link rel="modulepreload" crossorigin href="./assets/context-QkTujrKn.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNumberFormatter-ByUv-u9o.js">
+    <link rel="modulepreload" crossorigin href="./assets/usePress-DQ_tAz5W.js">
+    <link rel="modulepreload" crossorigin href="./assets/input-C3Hrdlqq.js">
+    <link rel="modulepreload" crossorigin href="./assets/ImperativeModal-B3Th7k4R.js">
+    <link rel="modulepreload" crossorigin href="./assets/cell-link-B1pHtGWp.js">
+    <link rel="modulepreload" crossorigin href="./assets/multi-map-CUuNtzHt.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-yTS3WpF4.js">
+    <link rel="modulepreload" crossorigin href="./assets/chevron-right-CG5QYXYk.js">
+    <link rel="modulepreload" crossorigin href="./assets/dropdown-menu-CR7cnzLX.js">
+    <link rel="modulepreload" crossorigin href="./assets/links-D1JoyKTt.js">
+    <link rel="modulepreload" crossorigin href="./assets/useRunCells-BiCBGyeW.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-LK56fFow.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-BwrPA9zQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-icon-OjtDb4gO.js">
+    <link rel="modulepreload" crossorigin href="./assets/RenderHTML-ChwPJgPd.js">
+    <link rel="modulepreload" crossorigin href="./assets/datasource-DjDpJnbt.js">
+    <link rel="modulepreload" crossorigin href="./assets/state-D-2KaAHK.js">
+    <link rel="modulepreload" crossorigin href="./assets/package-Tv6ztuzw.js">
+    <link rel="modulepreload" crossorigin href="./assets/sparkles-lWUAsPhp.js">
+    <link rel="modulepreload" crossorigin href="./assets/MarimoErrorOutput-B0h5OVW9.js">
+    <link rel="modulepreload" crossorigin href="./assets/spinner-Bhir8k53.js">
+    <link rel="modulepreload" crossorigin href="./assets/html-to-image-BWL3Ct4n.js">
+    <link rel="modulepreload" crossorigin href="./assets/focus-q38vUCl-.js">
+    <link rel="modulepreload" crossorigin href="./assets/useAsyncData-bgszE9F0.js">
+    <link rel="modulepreload" crossorigin href="./assets/LazyAnyLanguageCodeMirror-BEvXb3VX.js">
+    <link rel="modulepreload" crossorigin href="./assets/micromark-factory-space-BygYYKhs.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-5FQGJX7Z-D9iBG0F7.js">
+    <link rel="modulepreload" crossorigin href="./assets/markdown-renderer-CU5Lbyax.js">
+    <link rel="modulepreload" crossorigin href="./assets/command-KARR7KMq.js">
+    <link rel="modulepreload" crossorigin href="./assets/field-zLmMOSA4.js">
+    <link rel="modulepreload" crossorigin href="./assets/popover-Bz_0Vkyf.js">
+    <link rel="modulepreload" crossorigin href="./assets/errors-vr57w7Ul.js">
+    <link rel="modulepreload" crossorigin href="./assets/download-DT8gf0PL.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-BGPSHfig.js">
+    <link rel="modulepreload" crossorigin href="./assets/useIframeCapabilities-CcI1zSdn.js">
+    <link rel="modulepreload" crossorigin href="./assets/error-banner-LdWZDbqd.js">
+    <link rel="modulepreload" crossorigin href="./assets/formats-b7Sf6DAK.js">
+    <link rel="modulepreload" crossorigin href="./assets/en-US-Cb8rIK52.js">
+    <link rel="modulepreload" crossorigin href="./assets/isValid-CklTTytn.js">
+    <link rel="modulepreload" crossorigin href="./assets/dates-CTxr0EqQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/maps-n3GaPJwv.js">
+    <link rel="modulepreload" crossorigin href="./assets/extends-BiFDv3jB.js">
+    <link rel="modulepreload" crossorigin href="./assets/emotion-is-prop-valid.esm-C59xfSYt.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDateFormatter-ICIDGgHf.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-icons.esm-BNzu6e7h.js">
+    <link rel="modulepreload" crossorigin href="./assets/RSPContexts-CdN1NyAt.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-6NxtGaCm.js">
+    <link rel="modulepreload" crossorigin href="./assets/ellipsis-KAhMaCIV.js">
+    <link rel="modulepreload" crossorigin href="./assets/external-link-BTNxSavU.js">
+    <link rel="modulepreload" crossorigin href="./assets/message-circle-CWm2KnSx.js">
+    <link rel="modulepreload" crossorigin href="./assets/plus-BgB18UzY.js">
+    <link rel="modulepreload" crossorigin href="./assets/trash-2-rVklqqFF.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-resizable-panels.browser.esm-CV8-hvjx.js">
+    <link rel="modulepreload" crossorigin href="./assets/JsonOutput-BJaeXQim.js">
+    <link rel="modulepreload" crossorigin href="./assets/chart-no-axes-column-nqk474t8.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-function-uY_yJr5g.js">
+    <link rel="modulepreload" crossorigin href="./assets/spec-CPQR_o92.js">
+    <link rel="modulepreload" crossorigin href="./assets/ellipsis-vertical-CkwWkOQL.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-cw-DHwG4Mac.js">
+    <link rel="modulepreload" crossorigin href="./assets/tree-actions-BM_EJr3E.js">
+    <link rel="modulepreload" crossorigin href="./assets/components-BzBUxUz0.js">
+    <link rel="modulepreload" crossorigin href="./assets/column-preview-BPismotx.js">
+    <link rel="modulepreload" crossorigin href="./assets/icons-Ol38nIbL.js">
+    <link rel="modulepreload" crossorigin href="./assets/radio-group-DlVSuZ_1.js">
+    <link rel="modulepreload" crossorigin href="./assets/floating-outline-BN9sAcQ0.js">
+    <link rel="modulepreload" crossorigin href="./assets/objectWithoutPropertiesLoose-DfWeGRFv.js">
+    <link rel="modulepreload" crossorigin href="./assets/esm-CqWdmSnV.js">
+    <link rel="modulepreload" crossorigin href="./assets/readonly-python-code-D3_kHsDx.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-headphone-BrQspHac.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-BrdxGLRX.js">
+    <link rel="modulepreload" crossorigin href="./assets/image-DQHXdEQn.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-icons-BiMOJy0r.js">
+    <link rel="modulepreload" crossorigin href="./assets/switch-BiU_sAcn.js">
+    <link rel="modulepreload" crossorigin href="./assets/events-CPoJAfgx.js">
+    <link rel="modulepreload" crossorigin href="./assets/globals-7JnRMGd4.js">
+    <link rel="modulepreload" crossorigin href="./assets/share-DMwTZOTH.js">
+    <link rel="modulepreload" crossorigin href="./assets/blob-Bgnx1kuY.js">
+    <link rel="modulepreload" crossorigin href="./assets/memoize-Tp7rARFe.js">
+    <link rel="modulepreload" crossorigin href="./assets/get-C-qh_et5.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseSet-CxV9N1bc.js">
+    <link rel="modulepreload" crossorigin href="./assets/state-BTTshiKq.js">
+    <link rel="modulepreload" crossorigin href="./assets/label-xHqFtfdz.js">
+    <link rel="modulepreload" crossorigin href="./assets/textarea-DwltG8V6.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-ccw-C-n2VFP5.js">
+    <link rel="modulepreload" crossorigin href="./assets/form-BtBTvVVd.js">
+    <link rel="modulepreload" crossorigin href="./assets/renderShortcut-CcFk3m01.js">
+    <link rel="modulepreload" crossorigin href="./assets/useBoolean-Bp18o6XG.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDeepCompareMemoize-zUHU--0D.js">
+    <link rel="modulepreload" crossorigin href="./assets/types-W8WWuumF.js">
+    <link rel="modulepreload" crossorigin href="./assets/semaphore-FlZezxaf.js">
+    <link rel="modulepreload" crossorigin href="./assets/fileToBase64-DZfwJMrG.js">
+    <link rel="modulepreload" crossorigin href="./assets/pathUtils-CJjndqMI.js">
+    <link rel="modulepreload" crossorigin href="./assets/prop-types-DaaA-ptl.js">
+    <link rel="modulepreload" crossorigin href="./assets/es-DGgq-Wes.js">
+    <link rel="modulepreload" crossorigin href="./assets/hasIn-DiS_ryrS.js">
+    <link rel="modulepreload" crossorigin href="./assets/flatten-Dl4V1ub3.js">
+    <link rel="modulepreload" crossorigin href="./assets/pick-DqWUNly1.js">
+    <link rel="modulepreload" crossorigin href="./assets/code-xml-CZN6vNxu.js">
+    <link rel="modulepreload" crossorigin href="./assets/house-mGK3v0Mm.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-B5xWCt0a.js">
+    <link rel="modulepreload" crossorigin href="./assets/triangle-alert-D2p96PEF.js">
+    <link rel="modulepreload" crossorigin href="./assets/bundle.esm-DjhGJy4I.js">
+    <link rel="stylesheet" crossorigin href="./assets/cells-jmgGt1lS.css">
+    <link rel="stylesheet" crossorigin href="./assets/markdown-renderer-DdDKmWlR.css">
+    <link rel="stylesheet" crossorigin href="./assets/JsonOutput-B7vuddcd.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-BIw7BKLH.css">
+  <marimo-wasm hidden=""></marimo-wasm>
+    <script>
+        if (window.location.protocol === 'file:') {
+            alert('Warning: This file must be served by an HTTP server to function correctly.');
+        }
+    </script>
+    
+    <style>
+        #save-button {
+            display: none !important;
+        }
+        #filename-input {
+            display: none !important;
+        }
+    </style>
+    
+<script data-marimo="true">
+    Object.defineProperty(window, "__MARIMO_EXPORT_CONTEXT__", {
+        value: Object.freeze({
+            trusted: true,
+            notebookCode: "import marimo\n\n__generated_with = \"0.23.9\"\napp = marimo.App(width=\"medium\")\n\n\n@app.cell\ndef _(mo):\n    mo.md(\"\"\"\n    ##Take Your Brain to the 1st Dimension\n    ###(In which we piss about with reasonably elementary One-Dimensional Cellular Automata.)\n\n    Consider a 1-dimensional strip of cells that can be in two states, live or dead, on or off. The new state of a cell is determined by its current state and those of its neighbours, with evolution in time represented by filling in sucessive rows down a grid. Typically, the central cell at the top of the grid is seeded as live. If only the left, (`l`) centre (`c`) and right (`r`) cells are considered there are $2^{3}=8$ combinations of states, and $2^{8}=256$ possible rules. These are [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton). If the three states are considered as bits of the integers 0-7, the new state for each combination can be represented by an 8-bit integer, a scheme attributed to [Wolfram](https://tinyurl.com/wolframsacrank). If next-nearest neighbours are considered, left-of-left (`L`) and right-of-right (`R`), there are $2^{5}=32$ combinations of states, and $2^{32}=4294967296$ rules. An exhaustive search for the suposedly interesting ones would be rather tedious. [Toffoli and Margolus](https://people.csail.mit.edu/nhm/cam-book.pdf) developed dedicated hardware that enabled the programatic generation of rules in [Forth](https://en.wikipedia.org/wiki/Forth_(programming_language)). Somewhat inspired by this, here rules can be specified with simple (mostly) boolean expressions with an additional if-then-else function. (Done by converting the infix expression to [reverse-Polish](https://en.wikipedia.org/wiki/Reverse_Polish_notation) with a cheap implementation of the [shunting algortithm](https://en.wikipedia.org/wiki/Shunting_yard_algorithm). A look-up-table is then generated for all combinations of states.) If the previous state of the central cell (`p`) is considered, there are $2^{2^{6}}$ rules, which is really rather a lot. By treating the previous states of each cell as a binary value, with the most recent value as the most-significant-bit, the cells can be coloured.\n    \"\"\")\n    return\n\n\n@app.cell\ndef _():\n    import marimo as mo\n\n    return (mo,)\n\n\n@app.cell\ndef _():\n    from functools import partial, reduce\n    import string\n\n    from matplotlib import colormaps\n    import numpy as np\n    from PIL import Image\n\n    return Image, colormaps, np, partial, reduce, string\n\n\n@app.cell\ndef _(np):\n    __var_tokens__ = 'pLlcrR'\n    __operators__ = {\n        '*': 2, '%': 2,\n        '+': 1, '-': 1,\n        '\u0026': 0, '|': 0, '^': 0, '~': 0, '=': 0, '\u003C': 0, '\u003E': 0\n    }\n    __op_tokens__ = ''.join(__operators__.keys())\n\n    __op_funcs__ = {\n        '*': np.multiply, '%': np.mod,\n        '+': np.add, '-': np.subtract,\n        '\u0026': np.logical_and, '|': np.logical_or,\n        '^': np.logical_xor, '~': np.logical_not,\n        '=': np.equal,\n        '\u003C': np.less, '\u003E': np.greater\n    }\n\n    __func_tokens__ = '?'\n    return (\n        __func_tokens__,\n        __op_funcs__,\n        __op_tokens__,\n        __operators__,\n        __var_tokens__,\n    )\n\n\n@app.cell\ndef _(__func_tokens__, __op_tokens__, __operators__, __var_tokens__, string):\n    def shunt(expr):\n        out_stack = list()\n        op_stack = list()\n        for i, tok in enumerate(expr):\n            if tok in string.digits or tok in __var_tokens__:\n                out_stack.append((tok, i))\n            elif tok == '(' or tok in __func_tokens__:\n                op_stack.append((tok, i))\n            elif tok in __op_tokens__:\n                priority = __operators__[tok]\n                while len(op_stack):\n                    if __operators__.get(op_stack[-1][0], -1) \u003E priority:\n                        out_stack.append(op_stack.pop())\n                    else:\n                        break\n                op_stack.append((tok, i))\n            elif tok == ')':\n                if not len(op_stack):\n                    return i\n                while op_stack[-1][0] != '(':\n                    try:\n                        out_stack.append(op_stack.pop())\n                    except:\n                        return ([], i)\n                op_stack.pop()\n                if len(op_stack):\n                    if op_stack[-1][0] in __func_tokens__:\n                        out_stack.append(op_stack.pop())\n            elif tok == ',':\n                if len(op_stack):\n                    while op_stack[-1][0] != '(':\n                        try:\n                            out_stack.append(op_stack.pop())\n                        except:\n                            return ([], i)\n            else:\n                return ([], i)\n        while len(op_stack):\n            out_stack.append(op_stack.pop())\n        return (out_stack, None)\n\n    return (shunt,)\n\n\n@app.cell\ndef _(__op_funcs__, __op_tokens__, __var_tokens__, np, string):\n    def rp_eval(expr, pos, vars):\n        stack = list()\n        for i, tok in enumerate(expr):\n            if tok in string.digits:\n                stack.append(np.int32(tok))\n            elif tok in __var_tokens__:\n                stack.append(vars[tok])\n            elif tok in __op_tokens__:\n                func = __op_funcs__[tok]\n                if tok == '~':\n                    try:\n                        args = [stack.pop()]\n                    except:\n                        return (None, pos[i])\n                else:\n                    try:\n                        arg2 = stack.pop()\n                        arg1 = stack.pop()\n                    except:\n                        return (None, pos[i])\n                    args = [arg1, arg2]\n                stack.append(func(*args).astype(np.int32))\n            elif tok == '?':\n                try:\n                    pred = np.ones((64,)) * stack.pop()\n                    pred_true = np.ones((64,)) * stack.pop()\n                    pred_false = np.ones((64,)) * stack.pop()\n                except:\n                    return (None, pos[i])\n                stack.append(np.where(pred, pred_true, pred_false))\n        return (stack[0].astype(np.uint32), None)\n\n    return (rp_eval,)\n\n\n@app.cell\ndef _(__var_tokens__, np, rp_eval, shunt):\n    _all_states = np.arange(64)\n    _all_bits = np.zeros((64, 6), np.bool)\n    for i in range(6):\n        _all_bits[:, i] = _all_states \u0026 2**(5-i) \u003E 0\n    __vars__ = {var: _all_bits[:, i] for i, var in enumerate(__var_tokens__)}\n\n    def build_rule(infix_rule):\n        try:\n            rp_toks, err = shunt(infix_rule)\n        except:\n            return ([], 0)\n        if not err is None:\n            return ([], err)\n        toks, pos = zip(*rp_toks)\n        rp_rule = ''.join(toks)\n        return rp_eval(rp_rule, pos, __vars__)\n\n    return (build_rule,)\n\n\n@app.cell\ndef _(np, reduce):\n    __shifts__ = ((16, -2), (8, -1), (2, 1), (1, 2))\n\n    def ca_step(rule, cells):\n        lsb = cells \u0026 1\n        state_bits = (factor * np.roll(lsb, shift) for factor, shift in __shifts__)\n        states = reduce(np.add, state_bits, 4 * lsb) + 32 * ((cells \u003E\u003E 1) \u0026 1)\n        return rule[states]\n\n    return (ca_step,)\n\n\n@app.cell\ndef _(ca_step, colormaps, np, partial):\n    def mono_render(cells):\n        return 255 - 255 * (cells \u0026 1)\n\n    def palette_render(cells, cmap, mask):\n        return (255 * cmap((mask - (cells \u0026 mask)) / mask)[:, 0, :-1]).astype(np.uint8)\n\n\n    def ca_seq(rule, seed, height, history=0, palette='YlGn', frames=1):\n        cells = np.ndarray.copy(seed)\n        width, _ = cells.shape\n        if not history:\n            renderer = mono_render\n        else:\n            renderer = partial(palette_render,\n                cmap=colormaps.get_cmap(palette),\n                mask=2**(history+1) - 1\n            )\n        for _ in range(frames):\n            img = np.zeros((height, width, 3), np.uint8)\n            for i, row in enumerate(img):\n                img[i, :, :] = renderer(cells)\n                cells = (cells \u003C\u003C 1) + (ca_step(rule, cells) \u0026 1)\n            yield img\n\n    return (ca_seq,)\n\n\n@app.cell\ndef _(Image, build_rule, ca_seq, np):\n    def ca1d_img(expr, width, height, history=0, palette='YlGn', max_dim=512):\n        rule, err = build_rule(expr)\n        if not err is None:\n            return (Image.fromarray(np.zeros((max_dim, max_dim, 3), np.uint8)), err)\n        cells = np.zeros((width, 1), np.int32)\n        cells[width//2] = 1\n        img = ca_seq(rule, cells, height, history, palette).__next__()\n        mag = max_dim // max(width, height)\n        return (Image.fromarray(img).resize((mag*width, mag*height), 0), None)\n\n    return (ca1d_img,)\n\n\n@app.cell\ndef _():\n    cmap_names = [\n        'binary', 'gray', 'bone', 'seismic', 'vanimo', 'managua', 'berlin', 'Spectral',\n        'twilight', 'twilight_shifted', 'ocean', 'turbo', 'plasma', 'magma', 'inferno', 'brg', 'gnuplot',\n        'terrain', 'gist_earth'\n    ]\n    return (cmap_names,)\n\n\n@app.cell\ndef _(cmap_names, colormaps, mo):\n    rule_box = mo.ui.text('(l^R)|(c^L)', label='rule')\n    hist_dropdown = mo.ui.dropdown(list(range(8)), value=4, label='history')\n    dims = list(map(lambda n: 2**n, range(5, 10)))\n    width_dropdown = mo.ui.dropdown(dims, value=512, label='width')\n    height_dropdown = mo.ui.dropdown(dims, value=512, label='height')\n    palettes = [name for name in cmap_names if name in colormaps]\n    colour_box = mo.ui.dropdown(palettes, value='twilight', label='palette')\n    return (\n        colour_box,\n        dims,\n        height_dropdown,\n        hist_dropdown,\n        rule_box,\n        width_dropdown,\n    )\n\n\n@app.cell\ndef _(\n    ca1d_img,\n    colour_box,\n    dims,\n    height_dropdown,\n    hist_dropdown,\n    rule_box,\n    width_dropdown,\n):\n    ui_img, rule_err = ca1d_img(rule_box.value, width_dropdown.value, height_dropdown.value,\n        history=hist_dropdown.value, palette=colour_box.value, max_dim=dims[-1]\n    )\n    return rule_err, ui_img\n\n\n@app.cell\ndef _(rule_box, rule_err):\n    if rule_err is None:\n        err_txt = ''\n    else:\n        err_txt = '\\n'.join([rule_box.value, ' '*rule_err+'^'])\n    return (err_txt,)\n\n\n@app.cell\ndef _(\n    colour_box,\n    err_txt,\n    height_dropdown,\n    hist_dropdown,\n    mo,\n    rule_box,\n    ui_img,\n    width_dropdown,\n):\n    mo.vstack([\n        mo.hstack([rule_box, mo.plain_text(err_txt)]),\n        mo.hstack([hist_dropdown, width_dropdown, height_dropdown, colour_box], justify='center'),\n        ui_img,\n    ], align='center')\n    return\n\n\n@app.cell\ndef _(mo):\n    mo.md(r\"\"\"\n    ###Rule Syntax\n\n    Each token in a rule is a single character:\n\n    * variables: spatial, `L`, `l`, `c`, `r`, `R` and `p` (previous), 0 or 1\n    * constants: single digits 0-9\n    * integer operators: `+`, `-`, `*`, `%` (modular division)\n    * boolean operators: `\u0026`, (and) `|`, (or) `^`, (xor) `\u003C`, `=`, `\u003E`\n    * parentheses: `()`\n    * predicate function: `?` (`?(predicate, expression-if-true, expression-if-false)`)\n    \"\"\")\n    return\n\n\n@app.cell\ndef _(ca1d_img, cmap_names, mo):\n    def eg_img(rule, size=128, palette=cmap_names[0], history=3):\n        return mo.vstack([\n            mo.plain_text(rule),\n            ca1d_img(rule, size, size, max_dim=size, palette=palette, history=history)[0]\n        ], heights=[0,0])\n\n    return (eg_img,)\n\n\n@app.cell\ndef _(eg_img, mo):\n    mo.vstack([\n        mo.plain_text('Some example rules:'),\n        mo.hstack([\n            eg_img('(L^c)|(r^c)', palette='plasma'),\n            eg_img('((l+r)\u003E(L+R+c))^(L\u0026R)', palette='ocean'),\n            eg_img('(l|L)^((L|R)^p)', palette='seismic'),\n            eg_img('((l^R)|(R^p))', palette='turbo')\n        ]),\n        mo.hstack([\n            eg_img('((l^p)|(L^c))', palette='magma'),\n            eg_img('(l^L)|(c^R)', palette='gray'),\n            eg_img('l^(c|r)', palette='ocean'),\n            eg_img('(c+r+c*r+l*c*r)%2', palette='brg')\n        ])\n    ])\n    return\n\n\n@app.cell\ndef _(mo):\n    mo.md(r\"\"\"\n    (The last two are the moderately infamous [rule 30](https://en.wikipedia.org/wiki/Rule_30)) and [rule 110](https://en.wikipedia.org/wiki/Elementary_cellular_automaton).)\n    \"\"\")\n    return\n\n\nif __name__ == \"__main__\":\n    app.run()\n",
+        }),
+        writable: false,
+        configurable: false,
+    });
+</script>
+<marimo-code hidden="">import%20marimo%0A%0A__generated_with%20%3D%20%220.23.9%22%0Aapp%20%3D%20marimo.App(width%3D%22medium%22)%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(%22%22%22%0A%20%20%20%20%23%23Take%20Your%20Brain%20to%20the%201st%20Dimension%0A%20%20%20%20%23%23%23(In%20which%20we%20piss%20about%20with%20reasonably%20elementary%20One-Dimensional%20Cellular%20Automata.)%0A%0A%20%20%20%20Consider%20a%201-dimensional%20strip%20of%20cells%20that%20can%20be%20in%20two%20states%2C%20live%20or%20dead%2C%20on%20or%20off.%20The%20new%20state%20of%20a%20cell%20is%20determined%20by%20its%20current%20state%20and%20those%20of%20its%20neighbours%2C%20with%20evolution%20in%20time%20represented%20by%20filling%20in%20sucessive%20rows%20down%20a%20grid.%20Typically%2C%20the%20central%20cell%20at%20the%20top%20of%20the%20grid%20is%20seeded%20as%20live.%20If%20only%20the%20left%2C%20(%60l%60)%20centre%20(%60c%60)%20and%20right%20(%60r%60)%20cells%20are%20considered%20there%20are%20%242%5E%7B3%7D%3D8%24%20combinations%20of%20states%2C%20and%20%242%5E%7B8%7D%3D256%24%20possible%20rules.%20These%20are%20%5Belementary%20cellular%20automata%5D(https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FElementary_cellular_automaton).%20If%20the%20three%20states%20are%20considered%20as%20bits%20of%20the%20integers%200-7%2C%20the%20new%20state%20for%20each%20combination%20can%20be%20represented%20by%20an%208-bit%20integer%2C%20a%20scheme%20attributed%20to%20%5BWolfram%5D(https%3A%2F%2Ftinyurl.com%2Fwolframsacrank).%20If%20next-nearest%20neighbours%20are%20considered%2C%20left-of-left%20(%60L%60)%20and%20right-of-right%20(%60R%60)%2C%20there%20are%20%242%5E%7B5%7D%3D32%24%20combinations%20of%20states%2C%20and%20%242%5E%7B32%7D%3D4294967296%24%20rules.%20An%20exhaustive%20search%20for%20the%20suposedly%20interesting%20ones%20would%20be%20rather%20tedious.%20%5BToffoli%20and%20Margolus%5D(https%3A%2F%2Fpeople.csail.mit.edu%2Fnhm%2Fcam-book.pdf)%20developed%20dedicated%20hardware%20that%20enabled%20the%20programatic%20generation%20of%20rules%20in%20%5BForth%5D(https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FForth_(programming_language)).%20Somewhat%20inspired%20by%20this%2C%20here%20rules%20can%20be%20specified%20with%20simple%20(mostly)%20boolean%20expressions%20with%20an%20additional%20if-then-else%20function.%20(Done%20by%20converting%20the%20infix%20expression%20to%20%5Breverse-Polish%5D(https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FReverse_Polish_notation)%20with%20a%20cheap%20implementation%20of%20the%20%5Bshunting%20algortithm%5D(https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FShunting_yard_algorithm).%20A%20look-up-table%20is%20then%20generated%20for%20all%20combinations%20of%20states.)%20If%20the%20previous%20state%20of%20the%20central%20cell%20(%60p%60)%20is%20considered%2C%20there%20are%20%242%5E%7B2%5E%7B6%7D%7D%24%20rules%2C%20which%20is%20really%20rather%20a%20lot.%20By%20treating%20the%20previous%20states%20of%20each%20cell%20as%20a%20binary%20value%2C%20with%20the%20most%20recent%20value%20as%20the%20most-significant-bit%2C%20the%20cells%20can%20be%20coloured.%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20import%20marimo%20as%20mo%0A%0A%20%20%20%20return%20(mo%2C)%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20from%20functools%20import%20partial%2C%20reduce%0A%20%20%20%20import%20string%0A%0A%20%20%20%20from%20matplotlib%20import%20colormaps%0A%20%20%20%20import%20numpy%20as%20np%0A%20%20%20%20from%20PIL%20import%20Image%0A%0A%20%20%20%20return%20Image%2C%20colormaps%2C%20np%2C%20partial%2C%20reduce%2C%20string%0A%0A%0A%40app.cell%0Adef%20_(np)%3A%0A%20%20%20%20__var_tokens__%20%3D%20'pLlcrR'%0A%20%20%20%20__operators__%20%3D%20%7B%0A%20%20%20%20%20%20%20%20'*'%3A%202%2C%20'%25'%3A%202%2C%0A%20%20%20%20%20%20%20%20'%2B'%3A%201%2C%20'-'%3A%201%2C%0A%20%20%20%20%20%20%20%20'%26'%3A%200%2C%20'%7C'%3A%200%2C%20'%5E'%3A%200%2C%20'~'%3A%200%2C%20'%3D'%3A%200%2C%20'%3C'%3A%200%2C%20'%3E'%3A%200%0A%20%20%20%20%7D%0A%20%20%20%20__op_tokens__%20%3D%20''.join(__operators__.keys())%0A%0A%20%20%20%20__op_funcs__%20%3D%20%7B%0A%20%20%20%20%20%20%20%20'*'%3A%20np.multiply%2C%20'%25'%3A%20np.mod%2C%0A%20%20%20%20%20%20%20%20'%2B'%3A%20np.add%2C%20'-'%3A%20np.subtract%2C%0A%20%20%20%20%20%20%20%20'%26'%3A%20np.logical_and%2C%20'%7C'%3A%20np.logical_or%2C%0A%20%20%20%20%20%20%20%20'%5E'%3A%20np.logical_xor%2C%20'~'%3A%20np.logical_not%2C%0A%20%20%20%20%20%20%20%20'%3D'%3A%20np.equal%2C%0A%20%20%20%20%20%20%20%20'%3C'%3A%20np.less%2C%20'%3E'%3A%20np.greater%0A%20%20%20%20%7D%0A%0A%20%20%20%20__func_tokens__%20%3D%20'%3F'%0A%20%20%20%20return%20(%0A%20%20%20%20%20%20%20%20__func_tokens__%2C%0A%20%20%20%20%20%20%20%20__op_funcs__%2C%0A%20%20%20%20%20%20%20%20__op_tokens__%2C%0A%20%20%20%20%20%20%20%20__operators__%2C%0A%20%20%20%20%20%20%20%20__var_tokens__%2C%0A%20%20%20%20)%0A%0A%0A%40app.cell%0Adef%20_(__func_tokens__%2C%20__op_tokens__%2C%20__operators__%2C%20__var_tokens__%2C%20string)%3A%0A%20%20%20%20def%20shunt(expr)%3A%0A%20%20%20%20%20%20%20%20out_stack%20%3D%20list()%0A%20%20%20%20%20%20%20%20op_stack%20%3D%20list()%0A%20%20%20%20%20%20%20%20for%20i%2C%20tok%20in%20enumerate(expr)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20tok%20in%20string.digits%20or%20tok%20in%20__var_tokens__%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20out_stack.append((tok%2C%20i))%0A%20%20%20%20%20%20%20%20%20%20%20%20elif%20tok%20%3D%3D%20'('%20or%20tok%20in%20__func_tokens__%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20op_stack.append((tok%2C%20i))%0A%20%20%20%20%20%20%20%20%20%20%20%20elif%20tok%20in%20__op_tokens__%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20priority%20%3D%20__operators__%5Btok%5D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20while%20len(op_stack)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20__operators__.get(op_stack%5B-1%5D%5B0%5D%2C%20-1)%20%3E%20priority%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20out_stack.append(op_stack.pop())%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20break%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20op_stack.append((tok%2C%20i))%0A%20%20%20%20%20%20%20%20%20%20%20%20elif%20tok%20%3D%3D%20')'%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20not%20len(op_stack)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%20i%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20while%20op_stack%5B-1%5D%5B0%5D%20!%3D%20'('%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20try%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20out_stack.append(op_stack.pop())%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20except%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%20(%5B%5D%2C%20i)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20op_stack.pop()%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20len(op_stack)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20op_stack%5B-1%5D%5B0%5D%20in%20__func_tokens__%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20out_stack.append(op_stack.pop())%0A%20%20%20%20%20%20%20%20%20%20%20%20elif%20tok%20%3D%3D%20'%2C'%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20len(op_stack)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20while%20op_stack%5B-1%5D%5B0%5D%20!%3D%20'('%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20try%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20out_stack.append(op_stack.pop())%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20except%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%20(%5B%5D%2C%20i)%0A%20%20%20%20%20%20%20%20%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%20(%5B%5D%2C%20i)%0A%20%20%20%20%20%20%20%20while%20len(op_stack)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20out_stack.append(op_stack.pop())%0A%20%20%20%20%20%20%20%20return%20(out_stack%2C%20None)%0A%0A%20%20%20%20return%20(shunt%2C)%0A%0A%0A%40app.cell%0Adef%20_(__op_funcs__%2C%20__op_tokens__%2C%20__var_tokens__%2C%20np%2C%20string)%3A%0A%20%20%20%20def%20rp_eval(expr%2C%20pos%2C%20vars)%3A%0A%20%20%20%20%20%20%20%20stack%20%3D%20list()%0A%20%20%20%20%20%20%20%20for%20i%2C%20tok%20in%20enumerate(expr)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20tok%20in%20string.digits%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20stack.append(np.int32(tok))%0A%20%20%20%20%20%20%20%20%20%20%20%20elif%20tok%20in%20__var_tokens__%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20stack.append(vars%5Btok%5D)%0A%20%20%20%20%20%20%20%20%20%20%20%20elif%20tok%20in%20__op_tokens__%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20func%20%3D%20__op_funcs__%5Btok%5D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20tok%20%3D%3D%20'~'%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20try%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20args%20%3D%20%5Bstack.pop()%5D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20except%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%20(None%2C%20pos%5Bi%5D)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20try%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20arg2%20%3D%20stack.pop()%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20arg1%20%3D%20stack.pop()%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20except%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%20(None%2C%20pos%5Bi%5D)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20args%20%3D%20%5Barg1%2C%20arg2%5D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20stack.append(func(*args).astype(np.int32))%0A%20%20%20%20%20%20%20%20%20%20%20%20elif%20tok%20%3D%3D%20'%3F'%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20try%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pred%20%3D%20np.ones((64%2C))%20*%20stack.pop()%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pred_true%20%3D%20np.ones((64%2C))%20*%20stack.pop()%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pred_false%20%3D%20np.ones((64%2C))%20*%20stack.pop()%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20except%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%20(None%2C%20pos%5Bi%5D)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20stack.append(np.where(pred%2C%20pred_true%2C%20pred_false))%0A%20%20%20%20%20%20%20%20return%20(stack%5B0%5D.astype(np.uint32)%2C%20None)%0A%0A%20%20%20%20return%20(rp_eval%2C)%0A%0A%0A%40app.cell%0Adef%20_(__var_tokens__%2C%20np%2C%20rp_eval%2C%20shunt)%3A%0A%20%20%20%20_all_states%20%3D%20np.arange(64)%0A%20%20%20%20_all_bits%20%3D%20np.zeros((64%2C%206)%2C%20np.bool)%0A%20%20%20%20for%20i%20in%20range(6)%3A%0A%20%20%20%20%20%20%20%20_all_bits%5B%3A%2C%20i%5D%20%3D%20_all_states%20%26%202**(5-i)%20%3E%200%0A%20%20%20%20__vars__%20%3D%20%7Bvar%3A%20_all_bits%5B%3A%2C%20i%5D%20for%20i%2C%20var%20in%20enumerate(__var_tokens__)%7D%0A%0A%20%20%20%20def%20build_rule(infix_rule)%3A%0A%20%20%20%20%20%20%20%20try%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20rp_toks%2C%20err%20%3D%20shunt(infix_rule)%0A%20%20%20%20%20%20%20%20except%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20(%5B%5D%2C%200)%0A%20%20%20%20%20%20%20%20if%20not%20err%20is%20None%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20(%5B%5D%2C%20err)%0A%20%20%20%20%20%20%20%20toks%2C%20pos%20%3D%20zip(*rp_toks)%0A%20%20%20%20%20%20%20%20rp_rule%20%3D%20''.join(toks)%0A%20%20%20%20%20%20%20%20return%20rp_eval(rp_rule%2C%20pos%2C%20__vars__)%0A%0A%20%20%20%20return%20(build_rule%2C)%0A%0A%0A%40app.cell%0Adef%20_(np%2C%20reduce)%3A%0A%20%20%20%20__shifts__%20%3D%20((16%2C%20-2)%2C%20(8%2C%20-1)%2C%20(2%2C%201)%2C%20(1%2C%202))%0A%0A%20%20%20%20def%20ca_step(rule%2C%20cells)%3A%0A%20%20%20%20%20%20%20%20lsb%20%3D%20cells%20%26%201%0A%20%20%20%20%20%20%20%20state_bits%20%3D%20(factor%20*%20np.roll(lsb%2C%20shift)%20for%20factor%2C%20shift%20in%20__shifts__)%0A%20%20%20%20%20%20%20%20states%20%3D%20reduce(np.add%2C%20state_bits%2C%204%20*%20lsb)%20%2B%2032%20*%20((cells%20%3E%3E%201)%20%26%201)%0A%20%20%20%20%20%20%20%20return%20rule%5Bstates%5D%0A%0A%20%20%20%20return%20(ca_step%2C)%0A%0A%0A%40app.cell%0Adef%20_(ca_step%2C%20colormaps%2C%20np%2C%20partial)%3A%0A%20%20%20%20def%20mono_render(cells)%3A%0A%20%20%20%20%20%20%20%20return%20255%20-%20255%20*%20(cells%20%26%201)%0A%0A%20%20%20%20def%20palette_render(cells%2C%20cmap%2C%20mask)%3A%0A%20%20%20%20%20%20%20%20return%20(255%20*%20cmap((mask%20-%20(cells%20%26%20mask))%20%2F%20mask)%5B%3A%2C%200%2C%20%3A-1%5D).astype(np.uint8)%0A%0A%0A%20%20%20%20def%20ca_seq(rule%2C%20seed%2C%20height%2C%20history%3D0%2C%20palette%3D'YlGn'%2C%20frames%3D1)%3A%0A%20%20%20%20%20%20%20%20cells%20%3D%20np.ndarray.copy(seed)%0A%20%20%20%20%20%20%20%20width%2C%20_%20%3D%20cells.shape%0A%20%20%20%20%20%20%20%20if%20not%20history%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20renderer%20%3D%20mono_render%0A%20%20%20%20%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20renderer%20%3D%20partial(palette_render%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20cmap%3Dcolormaps.get_cmap(palette)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20mask%3D2**(history%2B1)%20-%201%0A%20%20%20%20%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20for%20_%20in%20range(frames)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20img%20%3D%20np.zeros((height%2C%20width%2C%203)%2C%20np.uint8)%0A%20%20%20%20%20%20%20%20%20%20%20%20for%20i%2C%20row%20in%20enumerate(img)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20img%5Bi%2C%20%3A%2C%20%3A%5D%20%3D%20renderer(cells)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20cells%20%3D%20(cells%20%3C%3C%201)%20%2B%20(ca_step(rule%2C%20cells)%20%26%201)%0A%20%20%20%20%20%20%20%20%20%20%20%20yield%20img%0A%0A%20%20%20%20return%20(ca_seq%2C)%0A%0A%0A%40app.cell%0Adef%20_(Image%2C%20build_rule%2C%20ca_seq%2C%20np)%3A%0A%20%20%20%20def%20ca1d_img(expr%2C%20width%2C%20height%2C%20history%3D0%2C%20palette%3D'YlGn'%2C%20max_dim%3D512)%3A%0A%20%20%20%20%20%20%20%20rule%2C%20err%20%3D%20build_rule(expr)%0A%20%20%20%20%20%20%20%20if%20not%20err%20is%20None%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20(Image.fromarray(np.zeros((max_dim%2C%20max_dim%2C%203)%2C%20np.uint8))%2C%20err)%0A%20%20%20%20%20%20%20%20cells%20%3D%20np.zeros((width%2C%201)%2C%20np.int32)%0A%20%20%20%20%20%20%20%20cells%5Bwidth%2F%2F2%5D%20%3D%201%0A%20%20%20%20%20%20%20%20img%20%3D%20ca_seq(rule%2C%20cells%2C%20height%2C%20history%2C%20palette).__next__()%0A%20%20%20%20%20%20%20%20mag%20%3D%20max_dim%20%2F%2F%20max(width%2C%20height)%0A%20%20%20%20%20%20%20%20return%20(Image.fromarray(img).resize((mag*width%2C%20mag*height)%2C%200)%2C%20None)%0A%0A%20%20%20%20return%20(ca1d_img%2C)%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20cmap_names%20%3D%20%5B%0A%20%20%20%20%20%20%20%20'binary'%2C%20'gray'%2C%20'bone'%2C%20'seismic'%2C%20'vanimo'%2C%20'managua'%2C%20'berlin'%2C%20'Spectral'%2C%0A%20%20%20%20%20%20%20%20'twilight'%2C%20'twilight_shifted'%2C%20'ocean'%2C%20'turbo'%2C%20'plasma'%2C%20'magma'%2C%20'inferno'%2C%20'brg'%2C%20'gnuplot'%2C%0A%20%20%20%20%20%20%20%20'terrain'%2C%20'gist_earth'%0A%20%20%20%20%5D%0A%20%20%20%20return%20(cmap_names%2C)%0A%0A%0A%40app.cell%0Adef%20_(cmap_names%2C%20colormaps%2C%20mo)%3A%0A%20%20%20%20rule_box%20%3D%20mo.ui.text('(l%5ER)%7C(c%5EL)'%2C%20label%3D'rule')%0A%20%20%20%20hist_dropdown%20%3D%20mo.ui.dropdown(list(range(8))%2C%20value%3D4%2C%20label%3D'history')%0A%20%20%20%20dims%20%3D%20list(map(lambda%20n%3A%202**n%2C%20range(5%2C%2010)))%0A%20%20%20%20width_dropdown%20%3D%20mo.ui.dropdown(dims%2C%20value%3D512%2C%20label%3D'width')%0A%20%20%20%20height_dropdown%20%3D%20mo.ui.dropdown(dims%2C%20value%3D512%2C%20label%3D'height')%0A%20%20%20%20palettes%20%3D%20%5Bname%20for%20name%20in%20cmap_names%20if%20name%20in%20colormaps%5D%0A%20%20%20%20colour_box%20%3D%20mo.ui.dropdown(palettes%2C%20value%3D'twilight'%2C%20label%3D'palette')%0A%20%20%20%20return%20(%0A%20%20%20%20%20%20%20%20colour_box%2C%0A%20%20%20%20%20%20%20%20dims%2C%0A%20%20%20%20%20%20%20%20height_dropdown%2C%0A%20%20%20%20%20%20%20%20hist_dropdown%2C%0A%20%20%20%20%20%20%20%20rule_box%2C%0A%20%20%20%20%20%20%20%20width_dropdown%2C%0A%20%20%20%20)%0A%0A%0A%40app.cell%0Adef%20_(%0A%20%20%20%20ca1d_img%2C%0A%20%20%20%20colour_box%2C%0A%20%20%20%20dims%2C%0A%20%20%20%20height_dropdown%2C%0A%20%20%20%20hist_dropdown%2C%0A%20%20%20%20rule_box%2C%0A%20%20%20%20width_dropdown%2C%0A)%3A%0A%20%20%20%20ui_img%2C%20rule_err%20%3D%20ca1d_img(rule_box.value%2C%20width_dropdown.value%2C%20height_dropdown.value%2C%0A%20%20%20%20%20%20%20%20history%3Dhist_dropdown.value%2C%20palette%3Dcolour_box.value%2C%20max_dim%3Ddims%5B-1%5D%0A%20%20%20%20)%0A%20%20%20%20return%20rule_err%2C%20ui_img%0A%0A%0A%40app.cell%0Adef%20_(rule_box%2C%20rule_err)%3A%0A%20%20%20%20if%20rule_err%20is%20None%3A%0A%20%20%20%20%20%20%20%20err_txt%20%3D%20''%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20err_txt%20%3D%20'%5Cn'.join(%5Brule_box.value%2C%20'%20'*rule_err%2B'%5E'%5D)%0A%20%20%20%20return%20(err_txt%2C)%0A%0A%0A%40app.cell%0Adef%20_(%0A%20%20%20%20colour_box%2C%0A%20%20%20%20err_txt%2C%0A%20%20%20%20height_dropdown%2C%0A%20%20%20%20hist_dropdown%2C%0A%20%20%20%20mo%2C%0A%20%20%20%20rule_box%2C%0A%20%20%20%20ui_img%2C%0A%20%20%20%20width_dropdown%2C%0A)%3A%0A%20%20%20%20mo.vstack(%5B%0A%20%20%20%20%20%20%20%20mo.hstack(%5Brule_box%2C%20mo.plain_text(err_txt)%5D)%2C%0A%20%20%20%20%20%20%20%20mo.hstack(%5Bhist_dropdown%2C%20width_dropdown%2C%20height_dropdown%2C%20colour_box%5D%2C%20justify%3D'center')%2C%0A%20%20%20%20%20%20%20%20ui_img%2C%0A%20%20%20%20%5D%2C%20align%3D'center')%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%23Rule%20Syntax%0A%0A%20%20%20%20Each%20token%20in%20a%20rule%20is%20a%20single%20character%3A%0A%0A%20%20%20%20*%20variables%3A%20spatial%2C%20%60L%60%2C%20%60l%60%2C%20%60c%60%2C%20%60r%60%2C%20%60R%60%20and%20%60p%60%20(previous)%2C%200%20or%201%0A%20%20%20%20*%20constants%3A%20single%20digits%200-9%0A%20%20%20%20*%20integer%20operators%3A%20%60%2B%60%2C%20%60-%60%2C%20%60*%60%2C%20%60%25%60%20(modular%20division)%0A%20%20%20%20*%20boolean%20operators%3A%20%60%26%60%2C%20(and)%20%60%7C%60%2C%20(or)%20%60%5E%60%2C%20(xor)%20%60%3C%60%2C%20%60%3D%60%2C%20%60%3E%60%0A%20%20%20%20*%20parentheses%3A%20%60()%60%0A%20%20%20%20*%20predicate%20function%3A%20%60%3F%60%20(%60%3F(predicate%2C%20expression-if-true%2C%20expression-if-false)%60)%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(ca1d_img%2C%20cmap_names%2C%20mo)%3A%0A%20%20%20%20def%20eg_img(rule%2C%20size%3D128%2C%20palette%3Dcmap_names%5B0%5D%2C%20history%3D3)%3A%0A%20%20%20%20%20%20%20%20return%20mo.vstack(%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20mo.plain_text(rule)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20ca1d_img(rule%2C%20size%2C%20size%2C%20max_dim%3Dsize%2C%20palette%3Dpalette%2C%20history%3Dhistory)%5B0%5D%0A%20%20%20%20%20%20%20%20%5D%2C%20heights%3D%5B0%2C0%5D)%0A%0A%20%20%20%20return%20(eg_img%2C)%0A%0A%0A%40app.cell%0Adef%20_(eg_img%2C%20mo)%3A%0A%20%20%20%20mo.vstack(%5B%0A%20%20%20%20%20%20%20%20mo.plain_text('Some%20example%20rules%3A')%2C%0A%20%20%20%20%20%20%20%20mo.hstack(%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20eg_img('(L%5Ec)%7C(r%5Ec)'%2C%20palette%3D'plasma')%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20eg_img('((l%2Br)%3E(L%2BR%2Bc))%5E(L%26R)'%2C%20palette%3D'ocean')%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20eg_img('(l%7CL)%5E((L%7CR)%5Ep)'%2C%20palette%3D'seismic')%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20eg_img('((l%5ER)%7C(R%5Ep))'%2C%20palette%3D'turbo')%0A%20%20%20%20%20%20%20%20%5D)%2C%0A%20%20%20%20%20%20%20%20mo.hstack(%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20eg_img('((l%5Ep)%7C(L%5Ec))'%2C%20palette%3D'magma')%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20eg_img('(l%5EL)%7C(c%5ER)'%2C%20palette%3D'gray')%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20eg_img('l%5E(c%7Cr)'%2C%20palette%3D'ocean')%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20eg_img('(c%2Br%2Bc*r%2Bl*c*r)%252'%2C%20palette%3D'brg')%0A%20%20%20%20%20%20%20%20%5D)%0A%20%20%20%20%5D)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20(The%20last%20two%20are%20the%20moderately%20infamous%20%5Brule%2030%5D(https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FRule_30))%20and%20%5Brule%20110%5D(https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FElementary_cellular_automaton).)%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20app.run()%0A</marimo-code></head>
+  <body>
+    <div id="root"></div>
+    <!-- This is a portal for the data editor to render in -->
+    <div id="portal" data-testid="glide-portal" style="position: fixed; left: 0; top: 0; z-index: 9999"></div>
+    <script data-marimo="true">
+      Object.defineProperty(window, "__MARIMO_MOUNT_CONFIG__", {
+        value: Object.freeze({
+            "filename": "notebook.py",
+            "cwd": "",
+            "lspWorkspace": null,
+            "mode": "read",
+            "version": "0.23.9",
+            "serverToken": "unused",
+            "config": {"ai": {"custom_providers": {}, "enabled": true, "models": {"custom_models": [], "displayed_models": []}}, "completion": {"activate_on_typing": true, "auto_close_pairs": true, "copilot": false, "signature_hint_on_typing": false}, "diagnostics": {"sql_linter": true}, "display": {"cell_output": "below", "code_editor_font_size": 14, "dataframes": "rich", "default_table_max_columns": 50, "default_table_page_size": 10, "default_width": "medium", "reference_highlighting": true, "theme": "light"}, "formatting": {"line_length": 79}, "keymap": {"overrides": {}, "preset": "default"}, "language_servers": {"pylsp": {"enable_flake8": false, "enable_mypy": true, "enable_pydocstyle": false, "enable_pyflakes": false, "enable_pylint": false, "enable_ruff": true, "enabled": false}}, "mcp": {"mcpServers": {}, "presets": []}, "package_management": {"manager": "pip"}, "runtime": {"auto_instantiate": false, "auto_reload": "off", "default_csv_encoding": "utf-8", "default_sql_output": "auto", "on_cell_change": "autorun", "output_max_bytes": 8000000, "reactive_tests": true, "show_tracebacks": false, "std_stream_max_bytes": 1000000, "watcher_on_save": "lazy"}, "save": {"autosave": "off", "autosave_delay": 1000, "format_on_save": false}, "server": {"browser": "default", "follow_symlink": false}, "snippets": {"custom_paths": [], "include_default_snippets": true}},
+            "configOverrides": {},
+            "appConfig": {"sql_output": "auto", "width": "medium"},
+            "view": {"showAppCode": false},
+            "notebook": null,
+            "session": null,
+            "runtimeConfig": null,
+        }),
+        writable: false,
+        configurable: false,
+      });
+    </script>
+  </body>
+</html>

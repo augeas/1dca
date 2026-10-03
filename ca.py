@@ -1,27 +1,24 @@
-
-
 import marimo
 
-__generated_with = "0.13.2"
+__generated_with = "0.23.9"
 app = marimo.App(width="medium")
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        ##Take Your Brain to the 1st Dimension
-        ###(In which we piss about with reasonably elementary One-Dimensional Cellular Automata.)
+    mo.md("""
+    ##Take Your Brain to the 1st Dimension
+    ###(In which we piss about with reasonably elementary One-Dimensional Cellular Automata.)
 
-        Consider a 1-dimensional strip of cells that can be in two states, live or dead, on or off. The new state of a cell is determined by its current state and those of its neighbours, with evolution in time represented by filling in sucessive rows down a grid. Typically, the central cell at the top of the grid is seeded as live. If only the left, (`l`) centre (`c`) and right (`r`) cells are considered there are $2^{3}=8$ combinations of states, and $2^{8}=256$ possible rules. These are [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton). If the three states are considered as bits of the integers 0-7, the new state for each combination can be represented by an 8-bit integer, a scheme attributed to [Wolfram](https://tinyurl.com/wolframsacrank). If next-nearest neighbours are considered, left-of-left (`L`) and right-of-right (`R`), there are $2^{5}=32$ combinations of states, and $2^{32}=4294967296$ rules. An exhaustive search for the suposedly interesting ones would be rather tedious. [Toffoli and Margolus](https://people.csail.mit.edu/nhm/cam-book.pdf) developed dedicated hardware that enabled the programatic generation of rules in [Forth](https://en.wikipedia.org/wiki/Forth_(programming_language)). Somewhat inspired by this, here rules can be specified with simple (mostly) boolean expressions with an additional if-then-else function. (Done by converting the infix expression to [reverse-Polish](https://en.wikipedia.org/wiki/Reverse_Polish_notation) with a cheap implementation of the [shunting algortithm](https://en.wikipedia.org/wiki/Shunting_yard_algorithm). A look-up-table is then generated for all combinations of states.) If the previous state of the central cell (`p`) is considered, there are $2^{2^{6}}$ rules, which is really rather a lot. By treating the previous states of each cell as a binary value, with the most recent value as the most-significant-bit, the cells can be coloured.
-        """
-    )
+    Consider a 1-dimensional strip of cells that can be in two states, live or dead, on or off. The new state of a cell is determined by its current state and those of its neighbours, with evolution in time represented by filling in sucessive rows down a grid. Typically, the central cell at the top of the grid is seeded as live. If only the left, (`l`) centre (`c`) and right (`r`) cells are considered there are $2^{3}=8$ combinations of states, and $2^{8}=256$ possible rules. These are [elementary cellular automata](https://en.wikipedia.org/wiki/Elementary_cellular_automaton). If the three states are considered as bits of the integers 0-7, the new state for each combination can be represented by an 8-bit integer, a scheme attributed to [Wolfram](https://tinyurl.com/wolframsacrank). If next-nearest neighbours are considered, left-of-left (`L`) and right-of-right (`R`), there are $2^{5}=32$ combinations of states, and $2^{32}=4294967296$ rules. An exhaustive search for the suposedly interesting ones would be rather tedious. [Toffoli and Margolus](https://people.csail.mit.edu/nhm/cam-book.pdf) developed dedicated hardware that enabled the programatic generation of rules in [Forth](https://en.wikipedia.org/wiki/Forth_(programming_language)). Somewhat inspired by this, here rules can be specified with simple (mostly) boolean expressions with an additional if-then-else function. (Done by converting the infix expression to [reverse-Polish](https://en.wikipedia.org/wiki/Reverse_Polish_notation) with a cheap implementation of the [shunting algortithm](https://en.wikipedia.org/wiki/Shunting_yard_algorithm). A look-up-table is then generated for all combinations of states.) If the previous state of the central cell (`p`) is considered, there are $2^{2^{6}}$ rules, which is really rather a lot. By treating the previous states of each cell as a binary value, with the most recent value as the most-significant-bit, the cells can be coloured.
+    """)
     return
 
 
 @app.cell
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -33,6 +30,7 @@ def _():
     from matplotlib import colormaps
     import numpy as np
     from PIL import Image
+
     return Image, colormaps, np, partial, reduce, string
 
 
@@ -107,6 +105,7 @@ def _(__func_tokens__, __op_tokens__, __operators__, __var_tokens__, string):
         while len(op_stack):
             out_stack.append(op_stack.pop())
         return (out_stack, None)
+
     return (shunt,)
 
 
@@ -143,6 +142,7 @@ def _(__op_funcs__, __op_tokens__, __var_tokens__, np, string):
                     return (None, pos[i])
                 stack.append(np.where(pred, pred_true, pred_false))
         return (stack[0].astype(np.uint32), None)
+
     return (rp_eval,)
 
 
@@ -164,6 +164,7 @@ def _(__var_tokens__, np, rp_eval, shunt):
         toks, pos = zip(*rp_toks)
         rp_rule = ''.join(toks)
         return rp_eval(rp_rule, pos, __vars__)
+
     return (build_rule,)
 
 
@@ -176,6 +177,7 @@ def _(np, reduce):
         state_bits = (factor * np.roll(lsb, shift) for factor, shift in __shifts__)
         states = reduce(np.add, state_bits, 4 * lsb) + 32 * ((cells >> 1) & 1)
         return rule[states]
+
     return (ca_step,)
 
 
@@ -204,6 +206,7 @@ def _(ca_step, colormaps, np, partial):
                 img[i, :, :] = renderer(cells)
                 cells = (cells << 1) + (ca_step(rule, cells) & 1)
             yield img
+
     return (ca_seq,)
 
 
@@ -218,6 +221,7 @@ def _(Image, build_rule, ca_seq, np):
         img = ca_seq(rule, cells, height, history, palette).__next__()
         mag = max_dim // max(width, height)
         return (Image.fromarray(img).resize((mag*width, mag*height), 0), None)
+
     return (ca1d_img,)
 
 
@@ -296,20 +300,18 @@ def _(
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
-        ###Rule Syntax
+    mo.md(r"""
+    ###Rule Syntax
 
-        Each token in a rule is a single character:
+    Each token in a rule is a single character:
 
-        * variables: spatial, `L`, `l`, `c`, `r`, `R` and `p` (previous), 0 or 1
-        * constants: single digits 0-9
-        * integer operators: `+`, `-`, `*`, `%` (modular division)
-        * boolean operators: `&`, (and) `|`, (or) `^`, (xor) `<`, `=`, `>`
-        * parentheses: `()`
-        * predicate function: `?` (`?(predicate, expression-if-true, expression-if-false)`)
-        """
-    )
+    * variables: spatial, `L`, `l`, `c`, `r`, `R` and `p` (previous), 0 or 1
+    * constants: single digits 0-9
+    * integer operators: `+`, `-`, `*`, `%` (modular division)
+    * boolean operators: `&`, (and) `|`, (or) `^`, (xor) `<`, `=`, `>`
+    * parentheses: `()`
+    * predicate function: `?` (`?(predicate, expression-if-true, expression-if-false)`)
+    """)
     return
 
 
@@ -346,7 +348,9 @@ def _(eg_img, mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""(The last two are the moderately infamous [rule 30](https://en.wikipedia.org/wiki/Rule_30)) and [rule 110](https://en.wikipedia.org/wiki/Elementary_cellular_automaton).)""")
+    mo.md(r"""
+    (The last two are the moderately infamous [rule 30](https://en.wikipedia.org/wiki/Rule_30)) and [rule 110](https://en.wikipedia.org/wiki/Elementary_cellular_automaton).)
+    """)
     return
 
 
